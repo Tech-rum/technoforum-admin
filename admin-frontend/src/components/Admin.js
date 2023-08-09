@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Admin() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const[email, setEmail] = useState();
     const[password, setPassword] = useState();
     return (<div>
@@ -12,7 +12,7 @@ function Admin() {
         <div style={{display:"flex", justifyContent:"center", marginTop:200}}>
             <Card style={{padding:30}}>
             <div style={{textAlign:"center", color:"black", marginBottom:40}}>
-            <Typography variant="h6">Signup as Admin</Typography>
+            <Typography variant="h6">Signin as Admin</Typography>
         </div>
             <TextField
             id="outlined-basic" 
@@ -39,18 +39,15 @@ function Admin() {
             onClick={() => {
 
                 function callback2(data){
-                  if(data.message === "welcome to the admin dashboard") {
-                    alert("admin dashboard opened");
-                //  return(
-                //     <h1 style={{color: "white"}}>hello from adminlogin</h1>
-                //  )
-
-                navigate("/login");
-                }
-                else{
-                   console.log("error");
-                   alert("invalid credentials");
-                }
+                //   if(data.message === "welcome to the admin dashboard") {
+                //     alert("admin dashboard opened");
+                // //  return(
+                // //     <h1 style={{color: "white"}}>hello from adminlogin</h1>
+                // //  )
+                //localStorage.setItem("token", data.token)
+                    localStorage.setItem("token", data.token)
+                    window.location="/"
+                    // console.log(data.token);
                 }
 
                 function callback1(resp){
@@ -64,7 +61,7 @@ function Admin() {
                     }),
                     headers: {
                         "Content-type": "application/json",
-                    },
+                    }
 
                 }).then(callback1)
 
