@@ -1,19 +1,23 @@
 //here we are basically creating a component for nav bar
 
-import { Button, Typography } from "@mui/material";
-import {Navigate, useNavigate} from "react-router-dom";
+import { Button, Card, Typography } from "@mui/material";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import AdminLogin from "./AdminLogin";
+import AddEvent from "./addEvent";
+import Events from "./Events";
+
 
 function AppbarAdmin() {
    const navigate = useNavigate();
     const[email, setEmail] = useState(null);
-
+   
 
    useEffect(() => {
 
     function callback2(data) {
+        
        if(data.email){
         setEmail(data.email);
        }
@@ -57,7 +61,35 @@ function AppbarAdmin() {
            <strong>Admin-Email: </strong> {email}
         </div>
         <div style={{marginRight: 10}}>
-        <Button
+       
+
+<Button
+         variant="contained" 
+         style={{
+            marginLeft: 10
+        }}
+         onClick={() => {
+            window.location = "/addEvent"
+            
+            // this is a lame method , this refreshes page every time ,window.location = "/signup"
+              //navigate("/signup")
+         }}
+         >Add Event</Button>
+
+<Button
+         variant="contained" 
+         style={{
+            marginLeft: 10
+        }}
+         onClick={() => {
+            window.location = "/events"
+            
+            // this is a lame method , this refreshes page every time ,window.location = "/signup"
+              //navigate("/signup")
+         }}
+         >All Events</Button>
+
+<Button
          variant="contained" 
          style={{
             marginLeft: 10
@@ -83,8 +115,15 @@ function AppbarAdmin() {
 
  
      </div>
-     <AdminLogin></AdminLogin>
-     
+     <div style={{
+        display: "flex",
+        flexWrap: "wrap", 
+        justifyContent:"center"
+     }}>
+     {/* <AdminLogin></AdminLogin> */}
+     {/* <AddEventCard></AddEventCard> */}
+     {/* <ViewEventsCard></ViewEventsCard> */}
+     </div>
      </>
     )
     
@@ -122,4 +161,89 @@ function AppbarAdmin() {
 
    } 
 
+   
 export default AppbarAdmin;
+
+//card for adding event
+
+// function AddEventCard() {
+//     const navigate = useNavigate();
+//     return(
+//         <div>
+//               <div
+//             style={{
+//                 display:"flex", 
+//                 textAlign:"center"
+//             }}
+//             >
+//             <Card style={{
+//             border: "2px solid black",
+//             margin: 10,
+//             width: 300,
+//             minHeight:200,
+//             padding: 10
+
+//         }}>
+//             <Typography textAlign={"center"} variant="h5">ADD EVENT</Typography>
+//             <Typography textAlign={"center"} variant="subtitle1"></Typography>
+//             <img src={"https://static.vecteezy.com/system/resources/previews/006/430/145/original/technology-background-concept-circuit-board-electronic-system-futuristic-hi-tech-light-on-dark-blue-free-vector.jpg"} style={{width: 300}}></img>
+//             <Button 
+//             size="large"
+//             variant="contained"
+//             style={{
+//                 textAlign:"center"
+//             }}
+//             onClick={() => {
+//                 navigate("/addEvent")
+//             }}
+//             >ADD</Button>
+//         </Card>
+
+//             </div>
+
+//         </div>
+//     )
+//    }
+
+// //Card for viewing all events
+
+// function ViewEventsCard() {
+//     const navigate = useNavigate();
+ 
+//     return(
+//         <div>
+//               <div
+//             style={{
+//                 display:"flex", 
+//                 textAlign:"center"
+//             }}
+//             >
+//             <Card style={{
+//             border: "2px solid black",
+//             margin: 10,
+//             width: 300,
+//             minHeight:200,
+//             padding: 10
+
+//         }}>
+//             <Typography textAlign={"center"} variant="h5">SEE ALL EVENTS</Typography>
+//             <Typography textAlign={"center"} variant="subtitle1"></Typography>
+//             <img src={"https://static.vecteezy.com/system/resources/previews/006/430/145/original/technology-background-concept-circuit-board-electronic-system-futuristic-hi-tech-light-on-dark-blue-free-vector.jpg"} style={{width: 300}}></img>
+//             <Button 
+//             size="large"
+//             variant="contained"
+//             style={{
+//                 textAlign:"center"
+//             }}
+//             onClick={() => {
+//                 navigate("/events")
+//             }}
+
+//             >SHOW</Button>
+//         </Card>
+
+//             </div>
+
+//         </div>
+//     )
+//    }

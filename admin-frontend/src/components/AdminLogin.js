@@ -48,7 +48,7 @@ const AdminLogin = () => {
       width: "30vw",
       height: "30vh",
       padding: 10,
-      marginTop: 40
+      margin: 10
     }}
     >
       <h1>Access Token: {data.access_token}</h1>
