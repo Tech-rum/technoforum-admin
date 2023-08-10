@@ -42,7 +42,15 @@ const AdminLogin = () => {
   };
 
   return (
-    <div>
+    <div
+    style={{
+      border: "2px solid black",
+      width: "30vw",
+      height: "30vh",
+      padding: 10,
+      marginTop: 40
+    }}
+    >
       <h1>Access Token: {data.access_token}</h1>
       <p className={isTokenExpired() ? 'expired' : ''}>Expiry Date: {data.expiry_date}</p>
       <button onClick={handleGenerateToken}>GENERATE TOKEN</button>
