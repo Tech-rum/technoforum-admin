@@ -4,6 +4,7 @@ import { Button, Typography } from "@mui/material";
 import {Navigate, useNavigate} from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import AdminLogin from "./AdminLogin";
 
 function AppbarAdmin() {
    const navigate = useNavigate();
@@ -34,57 +35,26 @@ function AppbarAdmin() {
      }).then(callback1)
    }, [])
 
-   const [data, setData] = useState({ access_token: '', expiry_date: '' });
-
-   const fetchData = async () => {
-     try {
-       const response = await fetch('https://technoforum.onrender.com/api/get-token');
-       const data = await response.json();
-       setData(data);
-     } catch (error) {
-       console.error('Error fetching data:', error);
-     }
-   };
- 
-   useEffect(() => {
-     fetchData();
-   }, []);
- 
-   const handleGenerateToken = async () => {
-     try {
-       const response = await fetch('https://technoforum.onrender.com/api/generate-token', {
-         method: 'POST',
-         headers: {
-           'Content-Type': 'application/json',
-         },
-       });
-       const data = await response.json();
-       setData(data);
-     } catch (error) {
-       console.error('Error generating token:', error);
-     }
-   };
- 
-   const isTokenExpired = () => {
-     if (!data.expiry_date) return false;
-     const expiryDate = new Date(data.expiry_date);
-     return expiryDate < new Date();
-   };
- 
+   
    if(email){
     return (
     <>
     <div style={{
         display: "flex",
         justifyContent: "space-between",
-        paddingTop: 10
+        padding: 10,
+        backgroundColor: "#00000011"
+
     }}>
         <div>
-        <Typography variant="h6">Technoforum</Typography>
+        <Typography variant="h5" style={{fontWeight:"600"}}>Technoforum</Typography>
         </div>
         <div style={{display: "flex"}}>
-        <div>
-            {email}
+        <div style={{
+            padding: 10,
+            backgroundColor:"#ffffff"
+        }}>
+           <strong>Admin-Email: </strong> {email}
         </div>
         <div style={{marginRight: 10}}>
         <Button
@@ -109,21 +79,22 @@ function AppbarAdmin() {
          justifyContent:"center"
      }}
      >
-     <h1>Welcome to the ADMIN PANEL</h1>
+     <h2>Welcome to the ADMIN PANEL</h2>
+
  
      </div>
-     <div>
-      <h1>Access Token: {data.access_token}</h1>
-      <p className={isTokenExpired() ? 'expired' : ''}>Expiry Date: {data.expiry_date}</p>
-      <button onClick={handleGenerateToken}>GENERATE TOKEN</button>
-    </div>
+     <AdminLogin></AdminLogin>
+     
      </>
     )
     
    }
 
    else{
-    return <div style={{
+    
+    return (
+    <>
+    <div style={{
         display: "flex",
         justifyContent: "space-between",
         paddingTop: 10
@@ -142,6 +113,11 @@ function AppbarAdmin() {
          >Sign in</Button>
         </div>
     </div>
+    <div>
+
+    </div>
+  
+    </>)
 }
 
    } 

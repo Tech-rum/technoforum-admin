@@ -45,8 +45,12 @@ function Admin() {
                 // //     <h1 style={{color: "white"}}>hello from adminlogin</h1>
                 // //  )
                 //localStorage.setItem("token", data.token)
-                    localStorage.setItem("token", data.token)
-                    window.location="/"
+                  if(data.token){localStorage.setItem("token", data.token)
+                  window.location="/"
+                alert("Admin logged in successfully")
+                }
+                  if(!data.token)alert("Admin email or password incorrect")
+                  
                     // console.log(data.token);
                 }
 
