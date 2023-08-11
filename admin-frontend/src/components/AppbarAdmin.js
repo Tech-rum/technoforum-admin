@@ -50,7 +50,11 @@ function AppbarAdmin() {
         backgroundColor: "#00000011"
 
     }}>
-        <div>
+        <div
+        onClick={() => {
+            navigate("/");
+        }}
+        >
         <Typography variant="h5" style={{fontWeight:"600"}}>Technoforum</Typography>
         </div>
         <div style={{display: "flex"}}>
