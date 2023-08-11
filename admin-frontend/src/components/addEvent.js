@@ -9,7 +9,7 @@ function AddEvent () {
     const[date, setDate] = useState("");
     const[time, setTime] = useState("");
     const[venue, setVenue] = useState("");
-
+    const[link, setLink] = useState("");
     return (
         <div>
            <div 
@@ -68,12 +68,24 @@ function AddEvent () {
             fullWidth={true}
             label="Venue"
             variant="outlined" />
+            <br /><br />
+
+<TextField 
+            onChange={(e) => {
+            setLink(e.target.value)
+          }}
+            fullWidth={true}
+            label="Google form link"
+            variant="outlined" />
           </div>
-          <br /> <br />
+      
+    
+
           <div
           style={{
             display:"flex",
-            justifyContent:"center"
+            justifyContent:"center",
+            marginTop: 10
           }}
           >
           <Button
@@ -86,15 +98,16 @@ function AddEvent () {
                 description: description,
                 date: date,
                 time: time,
-                venue: venue
+                venue: venue,
+                link: link
               }),
               headers: {
                 "Content-type": "application/json",
                 "Authorization": "Bearer " +  localStorage.getItem("token")
             }
             }).then((resp) => {
-              resp.json().then((data) => {
-                alert("course Added")
+              return resp.json().then((data) => {
+                 alert("event Added")
               })
             })
           }}
