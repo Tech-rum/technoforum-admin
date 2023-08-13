@@ -5,6 +5,7 @@ import AppbarAdmin from "./components/AppbarAdmin"
 import "./App.css"
 import Events from "./components/Events";
 import AddEvent from "./components/addEvent";
+import Front from "./components/Front";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/events" element={<Events />} />
         <Route path="/addEvent" element={<AddEvent />} />
-
+        <Route path="/" element={<Front />} />
       </Routes>
     </Router>
    </div>

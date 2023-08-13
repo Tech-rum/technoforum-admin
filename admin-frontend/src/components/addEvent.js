@@ -107,7 +107,7 @@ function AddEvent () {
             }
             }).then((resp) => {
               return resp.json().then((data) => {
-                 alert("event Added")
+                { alert("event Added")}
               })
             })
           }}

@@ -140,7 +140,8 @@ function AppbarAdmin() {
     <div style={{
         display: "flex",
         justifyContent: "space-between",
-        paddingTop: 10
+        paddingTop: 10,
+        backgroundColor:"#00000011"
     }}>
         <div>
         <Typography variant="h6">Technoforum</Typography>
@@ -148,7 +149,7 @@ function AppbarAdmin() {
         <div>
         <Button
          variant="contained" 
-         style={{marginRight: 10}}
+         style={{margin: 10}}
          onClick={() => {
             // this is a lame method , this refreshes page every time ,window.location = "/signup"
               navigate("/admin")
