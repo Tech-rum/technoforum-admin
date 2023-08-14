@@ -1,10 +1,12 @@
-import { Card, Typography } from "@mui/material";
+import { Button, Card, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 
 function Events () {
     const[events, setEvents] = useState([]);
+   
     useEffect(() => {
         fetch("http://localhost:5000/events", {
             method: "GET",
@@ -15,7 +17,7 @@ function Events () {
             return resp.json().then((data) => {
                 console.log(data);
                 setEvents(data);
-                
+
             })
         });
     }, [])
@@ -31,6 +33,7 @@ function Events () {
 }
 
   export  function Event(props){
+        const navigate = useNavigate();
         return (
             <Card style={{
             border: "2px solid black",
@@ -38,12 +41,31 @@ function Events () {
             width: 300,
             minHeight:200
         }}>
+            <div
+            style={{
+                height: "75%"
+            }}
+            >
             <Typography textAlign={"center"} variant="h5">{props.event.title}</Typography>
             <Typography textAlign={"center"} variant="subtitle1">{props.event.description}</Typography>
             <Typography textAlign={"center"} variant="subtitle1">{props.event.date}</Typography>
             <Typography textAlign={"center"} variant="subtitle1">{props.event.time}</Typography>
             <Typography textAlign={"center"} variant="subtitle1">{props.event.venue}</Typography>
             <Typography textAlign={"center"} variant="subtitle1" type={"link"}>{props.event.link}</Typography>
+            </div>
+            <div style={{
+               margin: 10,
+               display: "flex",
+               justifyContent: "center"
+            }}>
+                
+                <Button 
+                variant="contained"
+                onClick={() => {
+                   navigate("/event/" + props.event.id);
+                }}
+                >EDIT</Button>
+            </div>
         </Card>
 
         )

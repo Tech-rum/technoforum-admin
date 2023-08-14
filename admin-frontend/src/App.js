@@ -6,7 +6,7 @@ import "./App.css"
 import Events from "./components/Events";
 import AddEvent from "./components/addEvent";
 import Front from "./components/Front";
-
+import Event from "./components/Event";
 function App() {
   return (
    <div>
@@ -17,6 +17,7 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/addEvent" element={<AddEvent />} />
         <Route path="/" element={<Front />} />
+        <Route path="/event/:eventId" element={<Event />} />
       </Routes>
     </Router>
    </div>
